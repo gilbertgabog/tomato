@@ -1,0 +1,29 @@
+{
+  "name": "tomato",
+  "version": "1.0.0",
+  "homepage": "https://github.com/netxph/tomato",
+  "authors": [
+    "Marc Vitalis <marc.vitalis@live.com>"
+  ],
+  "description": "a simple pomodoro app",
+  "keywords": [
+    "pomodoro",
+    "productivity",
+    "timer"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.4.0",
+    "core-elements": "Polymer/core-elements#~0.4.0",
+    "paper-elements": "Polymer/paper-elements#~0.4.0"
+  }
+}

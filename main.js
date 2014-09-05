@@ -1,15 +1,12 @@
 chrome.app.runtime.onLaunched.addListener(function() {
   // Center window on screen.
-  var width = 400;
-  var height = 300;
-
   chrome.app.window.create('build.html', {
-    id: "tomato",
-    bounds: {
-      width: width,
-      height: height
+    'bounds': {
+      'width': 250,
+      'height': 230
     },
-    resizable: false
+    'resizable': false,
+    'frame': 'chrome'
   });
 });
 

@@ -1,8 +1,16 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(roboto.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+
 html,body {
     height: 100%;
     margin: 0;
-    background-color: #E5E5E5;
-    font-family: Arial, sans-serif;
+    background-color: gray;
+    font-family: 'Roboto', sans-serif;
 }
 core-header-panel {
     height: 100%;
@@ -10,7 +18,7 @@ core-header-panel {
     -webkit-overflow-scrolling: touch; 
 }
 core-toolbar {
-    background: #03a9f4;
+    background: orangered;
     color: white;
 }
 #tabs {
@@ -22,9 +30,23 @@ core-toolbar {
     user-select: none;
 }
 .container {
-    width: 80%;
-    margin: 50px auto;
+    margin: 10px auto;
+    font-size: 60px;
 }
+
+core-card {
+        height: 100%;
+        padding: 20px;
+        background-color: rgb(255, 255, 255);
+      }
+
+paper-fab.pause {
+    background: red;
+    color: white;
+    position: absolute;
+    right: 10px;
+}
+
 @media (min-width: 481px) {
     #tabs {
         width: 200px;

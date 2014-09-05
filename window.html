@@ -11,6 +11,7 @@
 
     <link rel="import" href="components/core-elements/core-elements.html">
     <link rel="import" href="components/paper-elements/paper-elements.html">
+    <link rel="import" href="elements/tomato-timer.html">
     <link rel="stylesheet" href="main.css">
 
 </head>
@@ -21,10 +22,7 @@
     </core-toolbar>
     <section class="container">
         <paper-shadow z="1">
-        <core-card layout vertical>
-            <div id="timer" vertical layout center>24:47</div>
-            <paper-fab class="pause" icon="lock-outline" vertical layout right></paper-fab>
-        </core-card>
+            <tomato-timer></tomato-timer>
         </paper-shadow>
     </section>
 </core-header-panel>

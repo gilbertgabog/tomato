@@ -1,0 +1,39 @@
+<link rel="import" href="../components/core-elements/core-elements.html">
+<link rel="import" href="../components/paper-elements/paper-elements.html">
+<link rel="import" href="../components/core-icons/av-icons.html">
+
+<polymer-element name="tomato-timer">
+
+  <template>
+    <style>    
+      :host {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #core_card {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+        background-color: white;
+      }
+      #div {
+        font-size: 60px;
+      }
+    </style>
+    <core-card id="core_card" layout vertical>
+      <div id="div" vertical layout center>24:47</div>
+    </core-card>
+  </template>
+
+  <script>
+
+    Polymer('tomato-timer', {
+      
+    });
+
+  </script>
+
+</polymer-element>

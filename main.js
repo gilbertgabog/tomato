@@ -2,11 +2,11 @@ chrome.app.runtime.onLaunched.addListener(function() {
   // Center window on screen.
   chrome.app.window.create('build.html', {
     'bounds': {
-      'width': 250,
-      'height': 160
+      'width': 300,
+      'height': 200
     },
     'resizable': false,
-    'frame': 'chrome'
+    'frame': 'none'
   });
 });
 

@@ -13,11 +13,17 @@
       }
       #div {
         font-size: 60px;
+        background-color: orangered;
+        color: white;
       }
     </style>
     <core-card layout vertical>
-    <div id="div" vertical layout center>{{time}}</div>
+        <paper-shadow z="1">
+            <div id="div" vertical layout center>{{time}}</div>
+            <paper-ripple fit></paper-ripple>
+        </paper-shadow>
     </core-card>
+
   </template>
 
   <script>
@@ -47,6 +53,8 @@
 
                     if(timeLeft <= 0) {
                         clearInterval(timer);
+                        var audio = new Audio('timer.mp3');
+                        audio.play();
                     }
                 }.bind(this), 1000);
             }

@@ -2,7 +2,7 @@
 <link rel="import" href="../components/paper-elements/paper-elements.html">
 <link rel="import" href="../components/core-icons/av-icons.html">
 
-<polymer-element name="tomato-timer">
+<polymer-element name="tomato-timer" attributes="duration">
 
   <template>
     <style>    
@@ -29,8 +29,6 @@
   <script>
     (function(Polymer) {
 
-        var duration = 10;
-
         function padDigit(digit) {
             return ((digit < 10) ? ("0" + digit) : digit);
         } 
@@ -42,9 +40,10 @@
         }
 
         Polymer('tomato-timer', {
-            time: formatTime(duration),
+            duration: 1500,
+            time: formatTime(this.duration),
             ready: function() {
-                var timeLeft = duration;
+                var timeLeft = this.duration;
 
                 this.time = formatTime(timeLeft);
                 var timer = setInterval(function() {

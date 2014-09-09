@@ -24,10 +24,14 @@
     </core-toolbar>
     <div id="container" vertical layout center>
         <div id="middle" flex>
-            <tomato-timer id="timer" duration="15"></tomato-timer>
+            <paper-shadow z="1"></paper-shadow>
+            <div id="message" horizontal layout center center-justified>
+                <h2>Time to work.</h2>
+                <paper-ripple fit></paper-ripple>
+            </div>
         </div>
         <div id="bottom">
-            <h3 vertical layout center>Do some work!!</h3>
+            <tomato-timer id="timer" duration="1500"></tomato-timer>
         <div>
     </div>
 </body>

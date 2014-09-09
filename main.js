@@ -2,7 +2,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
   // Center window on screen.
   chrome.app.window.create('build.html', {
     'bounds': {
-      'width': 300,
+      'width': 250,
       'height': 200
     },
     'resizable': false,

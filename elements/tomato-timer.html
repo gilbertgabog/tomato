@@ -12,18 +12,31 @@
         box-sizing: border-box;
       }
       #div {
-        font-size: 60px;
-        background-color: orangered;
+        font-size: 40px;
+        background-color: #FF5252;
         color: white;
+        padding: 5px 30px;
+        -webkit-app-region: no-drag;
+      }
+
+      paper-fab {
+          position: absolute;
+          bottom: 35px;
+          right: 35px;
+      }
+
+      paper-fab.button-play {
+          background-color: yellow;
       }
     </style>
     <core-card layout vertical>
-        <paper-shadow z="1">
-            <div id="div" vertical layout center>{{time}}</div>
+            <div id="div" vertical layout left>
+                <span>{{time}}</span>
+            </div>
             <paper-ripple fit></paper-ripple>
-        </paper-shadow>
+            <paper-shadow z="1"></paper-shadow>
     </core-card>
-
+    <paper-fab class="button-play" icon="av:pause"></paper-fab>
   </template>
 
   <script>

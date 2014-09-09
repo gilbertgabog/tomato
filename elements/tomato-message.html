@@ -1,0 +1,23 @@
+<link rel="import" href="../components/core-elements/core-elements.html">
+<link rel="import" href="../components/paper-elements/paper-elements.html">
+<link rel="import" href="../components/core-icons/av-icons.html">
+
+<polymer-element name="tomato-message" attributes="message">
+    <template>
+        <style>
+            #message {
+                height: 155px;
+            }
+        </style>
+        <div id="message" horizontal layout center center-justified>
+            <h2>Time to work.</h2>
+            <paper-ripple fit></paper-ripple>
+        </div> 
+    </template>
+    <script>
+        (function(Polymer) {
+            Polymer('tomato-message', {
+            });
+        })(Polymer);
+    </script>
+</polymer-element>

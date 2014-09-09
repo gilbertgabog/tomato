@@ -1,0 +1,35 @@
+<link rel="import" href="../components/core-elements/core-elements.html">
+<link rel="import" href="../components/paper-elements/paper-elements.html">
+<link rel="import" href="../components/core-icons/av-icons.html">
+
+<polymer-element name="tomato-toolbar">
+    <template>
+        <style>
+            core-icon-button {
+                -webkit-app-region: no-drag;
+            }
+
+            core-toolbar {
+                -webkit-app-region: drag;
+                background-color: #FF8A80;
+            }
+        </style>
+        <core-toolbar>
+        <core-icon-button icon="close" on-click="{{onClose}}">
+            </core-icon-button>
+            <div flex>
+            </div>
+            <core-icon-button icon="settings"></core-icon-button>
+        </core-toolbar>
+        <script>
+            (function(Polymer) {
+                Polymer('tomato-toolbar', {
+                    onClose: function() {
+                        window.close();
+                    }
+                });
+            })(Polymer);
+        </script>
+    </template>
+
+</polymer-element>

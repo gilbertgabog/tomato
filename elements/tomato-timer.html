@@ -40,34 +40,74 @@
 
   <script>
     (function(Polymer) {
+        'use strict';
 
-        function padDigit(digit) {
-            return ((digit < 10) ? ("0" + digit) : digit);
-        } 
+        function Timer(duration, onElapsed, onFinished) {
+            var timer = this;
+            var clock;
 
-        function formatTime(time) {
-            var minutes = parseInt(time / 60);
-            var seconds = time % 60;
-            return padDigit(minutes) + ':' + padDigit(seconds);
-        }
+            function padDigit(digit) {
+                return ((digit < 10) ? ("0" + digit) : digit);
+            } 
+
+            function formatTime(time) {
+                var minutes = parseInt(time / 60);
+                var seconds = time % 60;
+                return padDigit(minutes) + ':' + padDigit(seconds);
+            }
+            
+            function elapsed(time) {
+                if(timer.onElapsed) {
+                timer.onElapsed(timer.getValue());
+                }
+            }
+            
+            timer.duration = duration;
+            timer.time = duration;
+            timer.onFinished = onFinished;
+            timer.onElapsed = onElapsed;
+            
+            timer.getValue = function() {
+                return formatTime(timer.time);
+            }
+            
+            timer.start = function() {
+                clearTimeout(clock);
+                timer.time = timer.duration;
+
+                elapsed(formatTime(timer.time));
+                timer.resume();
+            };
+            
+            timer.stop = function() {
+                clearTimeout(clock);
+                timer.time = timer.duration;
+                elapsed(formatTime(timer.time));
+            }
+            
+            timer.resume = function() {
+                timer.time--;
+                elapsed(formatTime(timer.time));
+                clock = setTimeout(timer.resume, 1000);
+
+                if(timer.time <= 0) {
+                    timer.pause();
+                }
+            }
+            
+            timer.pause = function() {
+                clearTimeout(clock);
+            }
+        };
 
         Polymer('tomato-timer', {
-            duration: 1500,
-            time: formatTime(this.duration),
             ready: function() {
-                var timeLeft = this.duration;
+                var self = this;
+                self.timer = new Timer(self.duration, function(time) {
+                    self.time = time;
+                });
 
-                this.time = formatTime(timeLeft);
-                var timer = setInterval(function() {
-                    timeLeft--;
-                    this.time = formatTime(timeLeft);
-
-                    if(timeLeft <= 0) {
-                        clearInterval(timer);
-                        var audio = new Audio('timer.mp3');
-                        audio.play();
-                    }
-                }.bind(this), 1000);
+                self.timer.start();
             }
         });
     })(Polymer);

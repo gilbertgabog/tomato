@@ -1,0 +1,75 @@
+<link rel="import" href="../components/core-elements/core-elements.html">
+<link rel="import" href="../components/paper-elements/paper-elements.html">
+<link rel="import" href="../components/core-icons/av-icons.html">
+
+<polymer-element name="tomato-card">
+    <template>
+        <style>
+
+            h1 {
+                color: white;
+                font-size: 60px;
+            }
+
+            #message {
+                color: white;
+                font-size: 15px;
+                -webkit-app-region: no-drag;
+            }
+            
+            #button-back {
+                position: absolute;
+            }
+
+            paper-icon-button {
+                color: white;
+                -webkit-app-region: no-drag;
+            }
+
+            #button-close {
+                position: absolute;
+                right: 10px;
+            }
+
+            #container {
+                width: 100%;
+                height: 135px;
+                -webkit-app-region: drag;
+            }
+
+            #time {
+                -webkit-app-region: no-drag;
+            }
+
+        </style>
+
+        <div id="container" vertical layout center>
+
+            <paper-icon-button icon="arrow-back" id="button-back"></paper-icon-button>
+            <paper-icon-button icon="close" id="button-close" on-click="{{onClose}}"></paper-icon-button>
+
+            <div id="div" flex>
+                <h1 id="time">24:47</h1>
+            </div>
+            <div>
+                <span id="message">Time to work!</span>
+            </div>
+
+        </div>
+
+        <script>
+
+            (function(Polymer) {
+                'use strict';
+
+                Polymer('tomato-card', {
+                    onClose: function() {
+                        window.close();
+                    }
+                });
+
+            })(Polymer);
+
+        </script>
+    </template>
+</polymer-element>

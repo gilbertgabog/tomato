@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Tomato</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Tomato</title>
 
-    <script src="components/platform/platform.js"></script>
+        <script src="components/platform/platform.js"></script>
 
-    <link rel="import" href="components/core-elements/core-elements.html">
-    <link rel="import" href="components/paper-elements/paper-elements.html">
-    <link rel="import" href="elements/tomato-timer.html">
-    <link rel="import" href="elements/tomato-toolbar.html">
-    <link rel="import" href="elements/tomato-message.html">
-    <link rel="stylesheet" href="main.css">
+        <link rel="import" href="components/core-elements/core-elements.html">
+        <link rel="import" href="components/paper-elements/paper-elements.html">
+        <link rel="import" href="elements/tomato-card.html">
+        <link rel="stylesheet" href="main.css">
 
-</head>
-<body unresolved>
-    <div id="container" vertical layout center>
-      <paper-icon-button icon="arrow-back" id="button-back"></paper-icon-button>
-      <paper-icon-button icon="close" id="button-close"></paper-icon-button>
-      <div id="div" flex>
-        <h1 id="time">24:47</h1>
-      </div>
-      <div>
-        <span id="message">Time to work!</span>
-      </div>
-    </div>
-</body>
+    </head>
+    <body unresolved>
+        <tomato-card></tomato-card>
+    </body>
 </html>

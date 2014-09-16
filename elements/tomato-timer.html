@@ -6,36 +6,16 @@
 
   <template>
     <style>    
-      :host {
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-      }
-      #div {
-        font-size: 40px;
-        background-color: #FF5252;
-        color: white;
-        padding: 5px 30px;
-        -webkit-app-region: no-drag;
-      }
 
-      paper-fab {
-          position: absolute;
-          bottom: 35px;
-          right: 35px;
-      }
+        h1 {
+            color: white;
+            font-size: 60px;
+            -webkit-app-region: no-drag;
+        }
 
-      paper-fab.button-play {
-          background-color: yellow;
-      }
     </style>
-    <core-card layout vertical>
-            <div id="div" vertical layout center>
-                <span>{{time}}</span>
-            </div>
-            <paper-ripple fit></paper-ripple>
-            <paper-shadow z="1"></paper-shadow>
-    </core-card>
+
+    <h1 id="time">{{time}}</h1>
   </template>
 
   <script>
@@ -60,6 +40,10 @@
                 if(timer.onElapsed) {
                 timer.onElapsed(timer.getValue());
                 }
+            }
+
+            function init() {
+                elapsed(timer.time);
             }
             
             timer.duration = duration;
@@ -98,16 +82,21 @@
             timer.pause = function() {
                 clearTimeout(clock);
             }
+
+            init();
+
+            return timer;
         };
 
         Polymer('tomato-timer', {
             ready: function() {
                 var self = this;
+
                 self.timer = new Timer(self.duration, function(time) {
                     self.time = time;
                 });
 
-                self.timer.start();
+                //self.timer.start();
             }
         });
     })(Polymer);

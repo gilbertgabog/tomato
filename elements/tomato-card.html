@@ -1,15 +1,12 @@
 <link rel="import" href="../components/core-elements/core-elements.html">
 <link rel="import" href="../components/paper-elements/paper-elements.html">
 <link rel="import" href="../components/core-icons/av-icons.html">
+<link rel="import" href="tomato-timer.html">
 
 <polymer-element name="tomato-card">
     <template>
         <style>
 
-            h1 {
-                color: white;
-                font-size: 60px;
-            }
 
             #message {
                 color: white;
@@ -37,7 +34,7 @@
                 -webkit-app-region: drag;
             }
 
-            #time {
+            #timer {
                 -webkit-app-region: no-drag;
             }
 
@@ -49,7 +46,7 @@
             <paper-icon-button icon="close" id="button-close" on-click="{{onClose}}"></paper-icon-button>
 
             <div id="div" flex>
-                <h1 id="time">24:47</h1>
+                <tomato-timer id="timer" duration="1500"></tomato-timer>
             </div>
             <div>
                 <span id="message">Time to work!</span>
@@ -57,19 +54,20 @@
 
         </div>
 
-        <script>
-
-            (function(Polymer) {
-                'use strict';
-
-                Polymer('tomato-card', {
-                    onClose: function() {
-                        window.close();
-                    }
-                });
-
-            })(Polymer);
-
-        </script>
     </template>
+
+    <script>
+
+        (function(Polymer) {
+            'use strict';
+
+            Polymer('tomato-card', {
+                onClose: function() {
+                    window.close();
+                }
+            });
+
+        })(Polymer);
+
+    </script>
 </polymer-element>

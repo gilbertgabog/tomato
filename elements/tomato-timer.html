@@ -15,7 +15,7 @@
 
     </style>
 
-    <h1 id="time">{{time}}</h1>
+    <h1 id="time" on-click="{{togglePlay}}">{{time}}</h1>
   </template>
 
   <script>
@@ -25,6 +25,7 @@
         function Timer(duration, onElapsed, onFinished) {
             var timer = this;
             var clock;
+            var running = false;
 
             function padDigit(digit) {
                 return ((digit < 10) ? ("0" + digit) : digit);
@@ -43,13 +44,13 @@
             }
 
             function init() {
+                timer.duration = duration;
+                timer.time = duration;
+                timer.onFinished = onFinished;
+                timer.onElapsed = onElapsed;
+
                 elapsed(timer.time);
             }
-            
-            timer.duration = duration;
-            timer.time = duration;
-            timer.onFinished = onFinished;
-            timer.onElapsed = onElapsed;
             
             timer.getValue = function() {
                 return formatTime(timer.time);
@@ -70,9 +71,12 @@
             }
             
             timer.resume = function() {
-                timer.time--;
-                elapsed(formatTime(timer.time));
-                clock = setTimeout(timer.resume, 1000);
+                if(timer.time > 0) {
+                    timer.time--;
+                    elapsed(formatTime(timer.time));
+                    clock = setTimeout(timer.resume, 1000);
+                    running = true;
+                }
 
                 if(timer.time <= 0) {
                     timer.pause();
@@ -81,6 +85,11 @@
             
             timer.pause = function() {
                 clearTimeout(clock);
+                running = false;
+            }
+
+            timer.toggle = function() {
+                running ? timer.pause() : timer.resume();
             }
 
             init();
@@ -95,8 +104,11 @@
                 self.timer = new Timer(self.duration, function(time) {
                     self.time = time;
                 });
+            },
+            togglePlay: function() {
+                var self = this;
 
-                //self.timer.start();
+                self.timer.toggle();
             }
         });
     })(Polymer);

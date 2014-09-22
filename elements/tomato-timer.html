@@ -70,16 +70,24 @@
                 elapsed(formatTime(timer.time));
             }
             
-            timer.resume = function() {
+            timer.resume = function(onElapsed) {
+                var onResume = function() {
+                    timer.resume(onElapsed);
+                };
+
                 if(timer.time > 0) {
                     timer.time--;
                     elapsed(formatTime(timer.time));
-                    clock = setTimeout(timer.resume, 1000);
+                    clock = setTimeout(onResume, 1000);
                     running = true;
                 }
 
                 if(timer.time <= 0) {
                     timer.pause();
+
+                    if(onElapsed) {
+                        onElapsed();
+                    }
                 }
             }
             
@@ -88,8 +96,8 @@
                 running = false;
             }
 
-            timer.toggle = function() {
-                running ? timer.pause() : timer.resume();
+            timer.toggle = function(onElapsed) {
+                running ? timer.pause() : timer.resume(onElapsed);
             }
 
             init();
@@ -108,7 +116,11 @@
             togglePlay: function() {
                 var self = this;
 
-                self.timer.toggle();
+                self.timer.toggle(function() {
+                    self.fire('elapsed');
+
+                    console.log("Timer Elapsed.");
+                });
             }
         });
     })(Polymer);

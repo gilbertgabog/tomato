@@ -5,17 +5,9 @@
 <polymer-element name="tomato-timer" attributes="duration">
 
   <template>
-    <style>    
-
-        h1 {
-            color: white;
-            font-size: 60px;
-            -webkit-app-region: no-drag;
-        }
-
-    </style>
-
-    <h1 id="time" on-click="{{togglePlay}}">{{time}}</h1>
+    <div class="container">
+        <span id="time" on-click="{{togglePlay}}">{{time}}</span>
+    </div>
   </template>
 
   <script>
@@ -72,11 +64,13 @@
             
             timer.resume = function(onElapsed) {
                 var onResume = function() {
+                    timer.time--;
                     timer.resume(onElapsed);
                 };
 
+                var interval = 1000;
+                
                 if(timer.time > 0) {
-                    timer.time--;
                     elapsed(formatTime(timer.time));
                     clock = setTimeout(onResume, 1000);
                     running = true;
@@ -97,7 +91,9 @@
             }
 
             timer.toggle = function(onElapsed) {
-                running ? timer.pause() : timer.resume(onElapsed);
+                if(timer.time > 0) {
+                    running ? timer.pause() : timer.resume(onElapsed);
+                }
             }
 
             init();
@@ -108,10 +104,18 @@
         Polymer('tomato-timer', {
             ready: function() {
                 var self = this;
-
+                self.init();
+            },
+            init: function() {
+                var self = this;
                 self.timer = new Timer(self.duration, function(time) {
                     self.time = time;
                 });
+            },
+            play: function() {
+                var self = this;
+                self.init();
+                self.togglePlay();
             },
             togglePlay: function() {
                 var self = this;

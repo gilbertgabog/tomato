@@ -3,56 +3,41 @@
 <link rel="import" href="../components/core-icons/av-icons.html">
 <link rel="import" href="tomato-timer.html">
 
-<polymer-element name="tomato-card">
+<polymer-element name="tomato-card" attributes="workCaption restCaption">
     <template>
         <style>
-
-
-            #message {
-                color: white;
-                font-size: 15px;
-                -webkit-app-region: no-drag;
+            tomato-timer /deep/ #time {
+                font-size: 60px;
             }
-            
-            #button-back {
-                position: absolute;
+            #work /deep/ #time {
+                color: orangered;
             }
-
-            paper-icon-button {
-                color: white;
-                -webkit-app-region: no-drag;
+            #rest /deep/ #time {
+                color: lawngreen;
             }
-
-            #button-close {
-                position: absolute;
-                right: 10px;
+            .message {
+                font-size: 18px;
             }
-
-            #container {
-                width: 100%;
-                height: 135px;
-                -webkit-app-region: drag;
-            }
-
-            #timer {
-                -webkit-app-region: no-drag;
-            }
-
         </style>
 
-        <div id="container" vertical layout center>
-
+        <div horizontal layout justified>
             <paper-icon-button icon="arrow-back" id="button-back"></paper-icon-button>
             <paper-icon-button icon="close" id="button-close" on-click="{{onClose}}"></paper-icon-button>
-
-            <div id="div" flex>
-                <tomato-timer id="timer" duration="15" on-elapsed="{{onElapsed}}"></tomato-timer>
-            </div>
-            <div>
-                <span id="message">Time to work!</span>
-            </div>
-
         </div>
+        <core-animated-pages id="page">
+            <section>
+                <div vertical layout center>
+                    <tomato-timer id="work" duration="1500" on-elapsed="{{onElapsed}}"></tomato-timer>
+                    <span class="message">{{workCaption}}</span>
+                </div>
+            </section>
+            <section>
+                <div vertical layout center>
+                    <tomato-timer id="rest" duration="300" on-elapsed="{{onElapsed}}"></tomato-timer>
+                    <span class="message">{{restCaption}}</span>
+                </div>
+            </section>
+        </core-animated-pages>
 
     </template>
 
@@ -68,12 +53,22 @@
 
             Polymer('tomato-card', {
                 ready: function() {
+                    var self = this;
+                    console.log(this.captions.work);
                 },
                 onClose: function() {
                     window.close();
                 },
                 onElapsed: function() {
                     playAudio();
+
+                    if(this.$.page.selected == 0) {
+                        this.$.page.selected = 1;
+                        this.$.rest.play();
+                    } else {
+                        this.$.page.selected = 0;
+                        this.$.work.play(); 
+                    }
                 }
             });
 
